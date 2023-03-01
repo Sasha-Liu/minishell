@@ -1,0 +1,14 @@
+#ignore all the .obj directory and its content, 
+.obj/
+
+#ignore all .a file
+*.a
+
+#ignore all a.out
+a.out
+
+#ignore all object file
+*.o
+
+#ignore the file minishell at the root 
+/minishell
