@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:56:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 20:17:27 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/01 20:59:46 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	ft_get_env_array(t_token *env_lst, char ***env)
 	t_token	*node;
 
 	node = env_lst;
-	len = ft_lstlen(lst);
-	tab = malloc(sizeof(char) * (len + 1));
+	len = ft_lstlen(env_lst);
+	tab = malloc(sizeof(char *) * (len + 1));
 	*env = NULL;
 	if (tab == NULL)
 		return (1);

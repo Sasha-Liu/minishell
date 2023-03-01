@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 12:41:12 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/01 21:07:43 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ t_cmd	*ft_malloc_cmd(int n)
 	i = 0;
 	while (i < n)
 	{
-		cmd->args = NULL;
-		cmd->read_file = NULL;
-		cmd->write_file = NULL;
-		cmd->append_file = NULL;
+		cmd[i].args = NULL;
+		cmd[i].read_file = NULL;
+		cmd[i].write_file = NULL;
+		cmd[i].append_file = NULL;
 		cmd[i].read_fd = 0;
 		cmd[i].write_fd = 1;
-		cmd->child_pid = 0;
-		cmd->exit_status = 0;
+		cmd[i].child_pid = 0;
+		cmd[i].exit_status = 0;
 		i++;
 	}
 	return (cmd);

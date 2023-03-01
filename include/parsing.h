@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 12:40:36 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/01 21:05:33 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_free_cmd(t_cmd *cmd, int size);
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);
+void	ft_print_cmd(t_cmd *cmd, int size);
 
 /***  dollar_exp_utils.c  ***/
 char	*ft_strjoin_1(char *new_w, char **old, int n);

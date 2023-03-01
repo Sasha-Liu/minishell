@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 16:39:27 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/01 20:28:19 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_token	*ft_new_token(char *str, int size);
 void	ft_add_token(t_token **lst, t_token *token);
 void	ft_delete_token(t_token **token);
 void	ft_delete_lst(t_token **lst);
-int		ft_lstlen(t_token *lst)
+int		ft_lstlen(t_token *lst);
 
 /***  ft_get_env.c  ***/
 int		ft_get_env(t_shell *shell);

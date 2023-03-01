@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/28 13:13:06 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 21:07:23 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	int	j;
 
 	i = 0;
-	printf("\n");
+	printf("size: %d\n", size);
 	while (i < size)
 	{
 		printf("cmd %d: ", i);
 		j = 0;
 		while (cmd[i].args && cmd[i].args[j])
 		{
-			printf("-%s-", cmd[i].args[j]);
+			printf("_%s_", cmd[i].args[j]);
 			j++;
 		}
 		printf("\n");
@@ -58,7 +58,7 @@ int main()
 	t_shell shell;
     char    *buffer;
 
-    if (ft_get_env(&(shell.env_lst)))
+    if (ft_get_env(&shell))
 	{
 		return (1);
 	}
