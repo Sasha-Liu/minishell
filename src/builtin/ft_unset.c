@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:10:19 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/23 17:25:48 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 20:19:43 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_unset(char **argv, t_shell *shell)
 		}
 		i++;
 	}
+	ft_update_env_array(shell);
 	return (ret);
 }
 
