@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/28 11:55:09 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 16:39:27 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_token{
 }	t_token;
 
 typedef struct s_shell{
-	char	**env;
+	char	**env_tab;
 	t_token	*env_lst;
 	int		exit_status;
 	t_cmd	*cmd;
@@ -67,11 +67,14 @@ typedef struct s_cmd{
 /***  token_utils.c  ***/
 t_token	*ft_new_token(char *str, int size);
 void	ft_add_token(t_token **lst, t_token *token);
-t_token	*ft_extract_token(t_token **lst, t_token *token);
 void	ft_delete_token(t_token **token);
 void	ft_delete_lst(t_token **lst);
+int		ft_lstlen(t_token *lst)
 
 /***  ft_get_env.c  ***/
-int		ft_get_env(t_token **env_lst);
+int		ft_get_env(t_shell *shell);
+int		ft_get_env_lst(t_token **env_lst);
+int		ft_get_env_array(t_token *env_lst, char ***env);
+void	ft_free_env_array(char ***env);
 
 #endif

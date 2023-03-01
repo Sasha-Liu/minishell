@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:46:19 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/17 17:12:18 by vburton          ###   ########.fr       */
+/*   Updated: 2023/03/01 16:26:12 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,6 @@ void	ft_add_token(t_token **lst, t_token *token)
 }
 
 /*
-	extract the token from list
-*/
-t_token	*ft_extract_token(t_token **lst, t_token *token)
-{
-	t_token	*prev;
-	t_token	*next;
-
-	if (*lst == token)
-	{
-		*lst = token->next;
-	}
-	prev = token->prev;
-	next = token->next;
-	if (prev)
-	{
-		prev->next = next;
-	}
-	if (next)
-	{
-		next->prev = prev;
-	}
-	token->prev = NULL;
-	token->next = NULL;
-	return (token);
-}
-
-/*
 	token should be extracted first 
 */
 void	ft_delete_token(t_token **token)
@@ -110,4 +83,19 @@ void	ft_delete_lst(t_token **lst)
 		node = next;
 	}
 	*lst = NULL;
+}
+
+int	ft_lstlen(t_token *lst)
+{
+	t_token	*node;
+	int		i;
+
+	node = lst;
+	i = 0;
+	while (node)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
 }

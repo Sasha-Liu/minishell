@@ -6,17 +6,36 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:56:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 12:46:05 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/01 16:50:58 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 /*
+	if first malloc to get env_lst fails, abort
+	if the second malloc fails, continue to execute 
+*/
+int	ft_get_env(t_shell *shell)
+{
+	if (ft_get_env_lst(&(shell->env_lst)))
+	{
+		write(2, "malloc fails\n", 13);
+		return (1);
+	}
+	if (ft_get_env_array(shell->env_lst, &(shell->env_tab)))
+	{
+		write(2, "malloc fails\n", 13);
+		return (0);
+	}
+	return (0);
+}
+
+/*
 	env_lst is for output
 	in case of error, the function return 1 and free the env_lst
 */
-int	ft_get_env(t_token **env_lst)
+int	ft_get_env_lst(t_token **env_lst)
 {
 	extern char	**environ;
 	t_token		*token;
@@ -37,13 +56,39 @@ int	ft_get_env(t_token **env_lst)
 	return (0);
 }
 
-/*
-int	ft_get_env_2(t_token *env_lst, char ***env)
+int	ft_get_env_array(t_token *env_lst, char ***env)
 {
-	
+	int		i;
+	int		len;
+	char	**tab;
+	t_token	*node;
+
+	node = env_lst;
+	len = ft_lstlen(lst);
+	tab = malloc(sizeof(char) * (len + 1));
+	*env = NULL;
+	if (tab == NULL)
+		return (1);
+	i = 0;
+	while (i < len)
+	{
+		tab[i] = ft_strdup(node->word);
+		if (tab[i] == NULL)
+		{
+			return (ft_free_env_array(&tab), 1);
+		}
+		node = node->next;
+		i++;
+	}
+	tab[i] = NULL;
+	*env = tab;
+	return (0);
 }
 
-void	ft_free_env(char ***env)
+/*
+	free the char ** env array
+*/
+void	ft_free_env_array(char ***env)
 {
 	char	**tab;
 	int		i;
@@ -59,5 +104,3 @@ void	ft_free_env(char ***env)
 	free(tab);
 	*env = NULL;
 }
-
-*/
