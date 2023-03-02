@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:18:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 15:47:42 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:49:06 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	ft_cd_home(t_shell *shell)
 	t_token	*env_lst;
 	char	*home;
 
+	write(2, "cd_home\n", 8);
 	home = NULL;
 	env_lst = shell->env_lst;
 	while (env_lst)
@@ -76,11 +77,14 @@ static int	ft_cd_home(t_shell *shell)
 	}
 	if (chdir(home))
 	{
+		//write(2, home, 10);
 		perror("chdir");
 		return (1);
 	}
 	if (ft_update_pwd(shell, home))
+	{
 		return (1);
+	}
 	return (0);
 }
 
@@ -95,11 +99,11 @@ static int	ft_update_pwd(t_shell *shell, char *dir)
 	word = ft_strjoin("PWD=", dir);
 	if (word == NULL)
 	{
-		write(2, "malloc fails\n", 13);
+		write(2, "malloc fails\n", 13);	
 		return (1);
 	}
 	env_lst = shell->env_lst;
-	while (env_lst)
+	while(env_lst)
 	{
 		if (ft_strncmp(env_lst->word, "PWD=", 4) == 0)
 		{

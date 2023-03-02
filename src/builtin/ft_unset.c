@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:10:19 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/02 15:48:00 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 20:19:43 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_unset(char **argv, t_shell *shell)
 {
 	int		ret;
 	int		i;
-
+	
 	if (argv[1] == NULL)
 	{
 		return (0);
@@ -43,7 +43,7 @@ int	ft_unset(char **argv, t_shell *shell)
 static void	ft_free_var(char *var, t_token **lst)
 {
 	t_token	*node;
-
+	
 	node = *lst;
 	if (ft_strncmp(node->word, var, ft_name_len(node->word)) == 0)
 	{

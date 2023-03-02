@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_homedir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:58:26 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 16:16:15 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/08 18:14:58 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_get_homedir(char *login)
 	split_line = ft_split(line, ':');
 	if (!split_line)
 	{
-		write(2, "malloc fails\n", 13);
+		write(2, "malloc fails\n", 13);	
 		return (free(line), NULL);
 	}
 	homedir = ft_strdup(split_line[5]);
@@ -58,7 +58,7 @@ char	*ft_get_homedir(char *login)
 		i++;
 	}
 	if (!homedir)
-		write(2, "malloc fails\n", 13);
+		write(2, "malloc fails\n", 13);	
 	return (free(line), free(split_line), homedir);
 }
 

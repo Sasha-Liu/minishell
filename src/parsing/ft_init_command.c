@@ -6,13 +6,13 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/02 15:41:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:19:23 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	ft_init_command(t_token *lst, t_cmd *cmd, int size)
+int ft_init_command(t_token *lst, t_cmd *cmd, int size)
 {
 	t_token	*node;
 	int		i;
@@ -69,7 +69,7 @@ int	ft_init_one(t_token *node, t_cmd *cmd)
     count size of char **
 	ex. ls -l will hve size 2
 */
-int	ft_count_args(t_token *node)
+int ft_count_args(t_token *node)
 {
 	int	count;
 
@@ -90,7 +90,7 @@ int	ft_count_args(t_token *node)
     return a node that is start of next cmd, 
     return NULL if it's the last cmd in the lst 
 */
-t_token	*ft_next_cmd(t_token *node)
+t_token *ft_next_cmd(t_token *node)
 {
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/02 16:08:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 12:47:39 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
 			return (NULL);
 		if (node->word == NULL)
 			node = node->next;
-		if (node == NULL || !(ft_strncmp(node->word, "|", 2) && node->is_op))
+		if (node == NULL || (ft_strncmp(node->word, "|", 2) == 0 && node->is_op))
 			return (node);
 		if (!ft_strcmp(node->word, "<<") && node->is_op)
 		{
@@ -90,8 +90,8 @@ void	ft_delete_redirect_lst(t_token **lst)
 	node = *lst;
 	while (node && node->next)
 	{
-		if ((!ft_strcmp(node->word, "<") || !ft_strcmp(node->word, "<<")
-				|| !ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>"))
+		if ((!ft_strcmp(node->word, "<") || !ft_strcmp(node->word, "<<") || 
+			(!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>")))
 			&& node->is_op)
 		{
 			node = ft_delete_redirect_node(node);
@@ -117,7 +117,7 @@ t_token	*ft_delete_redirect_node(t_token *node1)
 	t_token	*prev;
 	t_token	*node2;
 	t_token	*next;
-
+	
 	prev = node1->prev;
 	node2 = node1->next;
 	next = node1->next->next;

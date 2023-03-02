@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 15:35:23 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 20:31:13 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int		ft_unset(char **argv, t_shell *shell);
 int		ft_env(char **argv, t_shell *shell);
 void	ft_exit(t_shell *shell);
 
-int		ft_illegal_name(char *name);
-int		ft_name_len(char *str);
+int     ft_illegal_name(char *name);
+int	    ft_name_len(char *str);
 
 /*	utils	*/
-void	ft_update_env_array(t_shell *shell);
+void    ft_update_env_array(t_shell *shell);
+
 
 #endif

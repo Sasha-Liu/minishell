@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 16:03:13 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/01 21:07:43 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-static void	ft_free_args(t_cmd *cmd);
 
 /*
 	malloc cmd according to how many pipe counted in the lst
@@ -77,36 +75,26 @@ t_cmd	*ft_malloc_cmd(int n)
 void	ft_free_cmd(t_cmd *cmd, int size)
 {
 	int	i;
+	int	j;
 
 	if (cmd == NULL)
 		return ;
 	i = 0;
 	while (i < size)
 	{
-		ft_free_args(cmd + i);
-		free(cmd[i].args);
-		free(cmd[i].read_file);
-		free(cmd[i].write_file);
-		free(cmd[i].append_file);
+		if (cmd[i].args == NULL)
+			;
+		else
+		{
+			j = 0;
+			while (cmd[i].args[j])
+			{
+				free(cmd[i].args[j]);
+				j++;
+			}
+			free(cmd[i].args);
+		}
 		i++;
 	}
 	free(cmd);
-}
-
-static void	ft_free_args(t_cmd *cmd)
-{
-	char	**args;
-	int		i;
-
-	i = 0;
-	args = cmd->args;
-	if (args == NULL)
-		return ;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-	cmd->args = NULL;
 }
