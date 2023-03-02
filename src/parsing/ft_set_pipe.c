@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 12:38:45 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/02 13:47:49 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	*ft_malloc_pipe(int n)
 		if (pipe(p + i))
 		{
 			write(2, "pipe fails\n", 11);
-			//a function that close pipe on error
+			ft_close_pipe_err(p, i);
 			free(p);
 			return (NULL);
 		}
@@ -73,7 +73,7 @@ int	*ft_malloc_pipe(int n)
 	This function close all the pipe 
 	from p[i - 1] down to p[0]
 */
-void	ft_free_pipe_err(int *p, int i)
+void	ft_close_pipe_err(int *p, int i)
 {
 	i--;
 	while (i != 0)

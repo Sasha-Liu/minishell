@@ -14,11 +14,11 @@ int	ft_here_doc(char *limiter)
 		return (-1);
 	}
 	pid = fork();
-	/*if (pid == -1)
+	if (pid == -1)
 	{
 		write(2, "heredoc: fork fails\n", 20);
 		return (-1);
-	}*/
+	}
 	if (pid == 0)
 	{
 		close(fd[0]);

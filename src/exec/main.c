@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 21:07:23 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/02 13:54:46 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,32 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 int main()
 {
 	t_shell shell;
-    char    *buffer;
+	char    *buffer;
 
-    if (ft_get_env(&shell))
+	if (ft_get_env(&shell))
 	{
 		return (1);
 	}
-    while (1)
-    {
-        buffer = readline("minishell-> ");
-        if (buffer == NULL)
-            break ;
-        if (ft_parsing(buffer, &shell))
-		    write(2, "parsing fails\n", 14);
-        else
-        {
-            add_history(buffer);
+	while (1)
+	{
+		//cheange signal
+		buffer = readline("minishell-> ");
+		if (buffer == NULL)
+			break ;
+		if (ft_parsing(buffer, &shell))
+			write(2, "parsing fails\n", 14);
+		else
+		{
+			add_history(buffer);
+			//change signal
+			//exec
 			ft_print_cmd(shell.cmd, shell.cmd_size);
-        }
-        ft_free_cmd(shell.cmd, shell.cmd_size);
+		}
+		ft_free_cmd(shell.cmd, shell.cmd_size);
 		shell.cmd = NULL;
-        *buffer = '\0';
-        free(buffer);
-    }
-    ft_exit(&shell);
-    return (1);
+		*buffer = '\0';
+		free(buffer);
+	}
+	ft_exit(&shell);
+	return (1);
 }
-

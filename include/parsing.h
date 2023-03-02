@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 21:05:33 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/02 13:52:42 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ t_token	*ft_is_token(char **buffer, int length);
 void	ft_set_pipe(t_cmd *cmd, int n, int *p);
 int		*ft_malloc_pipe(int n);
 int		ft_count_pipe(t_token *lst);
-void	ft_free_pipe_err(int *p, int i);
 
 /*	ft_get_cmd.c	*/
 t_cmd	*ft_get_cmd(t_token *lst, int *size);
 t_cmd	*ft_malloc_cmd(int n);
 void	ft_free_cmd(t_cmd *cmd, int size);
+void	ft_close_pipe_err(int *p, int i);
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);
@@ -97,9 +97,9 @@ int		ft_init_one(t_token *node, t_cmd *cmd);
 int 	ft_count_args(t_token *node);
 t_token *ft_next_cmd(t_token *node);
 
-/*	ft_files.c	*/
+/*	ft_files.c	
 int	    ft_read_file(t_token *lst, char *op);
-int	    ft_write_file(t_token *lst, char *op);
+int	    ft_write_file(t_token *lst, char *op);*/
 
 /*	ft_here_doc.c	*/
 int	    ft_here_doc(char *limiter);
