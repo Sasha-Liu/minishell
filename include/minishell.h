@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 14:40:30 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 15:36:45 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+int						g_exit_status;
+
 typedef struct s_token	t_token;
 typedef struct s_shell	t_shell;
 typedef struct s_cmd	t_cmd;
-int						g_exit_status;
 
 /*
     Once the line is read by readline
@@ -61,7 +62,7 @@ typedef struct s_cmd{
 	char	*append_file;
 	int		write_fd;
 	int		read_fd;
-	int		child_pid; // init to 0
+	int		child_pid; //init to 0
 	int		exit_status; //init to 0
 }	t_cmd;
 

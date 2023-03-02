@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_here_doc.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 16:09:31 by hsliu             #+#    #+#             */
+/*   Updated: 2023/03/02 16:15:35 by hsliu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "exec.h"
 #include "minishell.h"
 #include "parsing.h"
@@ -7,7 +19,7 @@ int	ft_here_doc(char *limiter)
 	int		fd[2];
 	int		pid;
 	int		wstatus;
-	
+
 	if (pipe(fd) == -1)
 	{
 		write(2, "heredoc: pipe fails\n", 20);
@@ -25,18 +37,16 @@ int	ft_here_doc(char *limiter)
 		ft_child_here_doc(limiter, fd);
 		exit(0);
 	}
-	else
-	{
-		close(fd[1]);
-		wait(&wstatus);
-		return (fd[0]);
-	}
+	close(fd[1]);
+	wait(&wstatus);
+	return (fd[0]);
 }
 
 void	ft_child_here_doc(char *limiter, int *fd)
 {
 	char	*input;
 
+	close(fd[0]);
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
@@ -47,7 +57,7 @@ void	ft_child_here_doc(char *limiter, int *fd)
 			close(fd[1]);
 			return ;
 		}
-		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0 
+		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0
 			&& ft_strlen(input) == (ft_strlen(limiter) + 1))
 		{
 			free(input);

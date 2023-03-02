@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:51:18 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/09 12:51:20 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 15:57:50 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 char	*ft_tilde_exps(char *word, t_token *env_lst)
 {
 	char	*home;
-	
+
 	home = ft_get_home(env_lst);
 	if (ft_strncmp(word, "~", 2) == 0)
 	{
@@ -52,7 +52,7 @@ char	*ft_case_tilde_login(char *word)
 		{
 			write(2, "malloc fails\n", 13);
 		}
-		return (res);		
+		return (res);
 	}
 	res = ft_strjoin(home, word + ft_delimit_login(word));
 	if (!res)
@@ -86,7 +86,7 @@ char	*ft_case_tilde_slash(char *word, char *home)
 char	*ft_case_tilde(char *word, char *home)
 {
 	char	*res;
-	
+
 	if (home == NULL)
 	{
 		res = ft_strdup(word);
@@ -112,7 +112,7 @@ char	*ft_case_tilde(char *word, char *home)
 */
 char	*ft_get_home(t_token *env_lst)
 {
-    while (env_lst)
+	while (env_lst)
 	{
 		if (ft_strncmp(env_lst->word, "HOME=", 5) == 0)
 			return (env_lst->word + 5);

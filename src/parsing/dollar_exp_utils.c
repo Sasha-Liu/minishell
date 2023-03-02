@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 13:16:47 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 15:11:03 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin_1(char *new_word, char **old, int n)
 	if (n < 0)
 		return (new_word);
 	new_len = ft_strlen(new_word);
-	res = malloc(sizeof(char) * new_len + n + 2);
+	res = malloc(sizeof(char) * (new_len + n + 2));
 	if (!res)
 		return (free(new_word), NULL);
 	i = 0;

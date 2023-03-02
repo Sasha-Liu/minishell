@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 14:40:47 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 15:56:30 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 
 g_exit_status = 0;
 
-int main()
+int	main(void)
 {
-	t_shell shell;
-	char    *buffer;
+	t_shell	shell;
+	char	*buffer;
 
 	if (ft_get_env(&shell))
 	{
-		return (1);
+		return (0);
 	}
 	while (1)
 	{
@@ -79,10 +79,7 @@ int main()
 			ft_print_cmd(shell.cmd, shell.cmd_size);
 		}
 		ft_free_cmd(shell.cmd, shell.cmd_size);
-		shell.cmd = NULL;
-		*buffer = '\0';
 		free(buffer);
 	}
 	ft_exit(&shell);
-	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 20:19:15 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/02 15:48:32 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,13 @@ static void	ft_add_to_lst(t_token **env_lst, t_token *var)
 	t_token	*node;
 	t_token	*prev;
 	t_token	*next;
-	
+
 	name_len = ft_name_len(var->word);
 	node = *env_lst;
 	while (node && ft_strncmp(node->word, var->word, name_len))
 		node = node->next;
 	if (node == NULL)
-	{
 		return (ft_add_token(env_lst, var));
-	}
 	prev = node->prev;
 	next = node->next;
 	var->next = next;
@@ -105,7 +103,7 @@ int	ft_name_len(char *str)
 int	ft_illegal_name(char *name)
 {
 	int	i;
-	
+
 	if (ft_isdigit(name[0]))
 	{
 		write(2, "not a valid identifier\n", 31);

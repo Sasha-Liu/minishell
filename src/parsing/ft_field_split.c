@@ -6,22 +6,22 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:43:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 16:23:04 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:02:54 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	ft_set_pointer(t_token *n1, t_token *n2, t_token *prev, t_token *next)
+static void	ft_set_pointer(t_token *n1, t_token *n2, t_token *pre, t_token *nex)
 {
-	n1->prev = prev;
+	n1->prev = pre;
 	n1->next = n2;
 	n2->prev = n1;
-	n2->next = next;
-	if (prev != NULL)
-		prev->next = n1;
-	if (next != NULL)
-		next->prev = n2;
+	n2->next = nex;
+	if (pre != NULL)
+		pre->next = n1;
+	if (nex != NULL)
+		nex->prev = n2;
 }
 
 /*
@@ -30,7 +30,7 @@ static void	ft_set_pointer(t_token *n1, t_token *n2, t_token *prev, t_token *nex
     if there are unquoted space in the word,
     the word must be splitted
 */
-int ft_split_lst(t_token **lst)
+int	ft_split_lst(t_token **lst)
 {
 	int	err;
 
@@ -62,7 +62,7 @@ int ft_split_lst(t_token **lst)
     ft_split_lst with continue work on the next node
     (which is node2 in this case)
 */
-int ft_split_word(t_token **node)
+int	ft_split_word(t_token **node)
 {
 	int		i;
 	t_token	*node1;
@@ -85,7 +85,7 @@ int ft_split_word(t_token **node)
 		free(node2);
 		return (1);
 	}
-    ft_set_pointer(node1, node2, prev, next);
+	ft_set_pointer(node1, node2, prev, next);
 	ft_delete_token(node);
 	*node = node1;
 	return (0);
