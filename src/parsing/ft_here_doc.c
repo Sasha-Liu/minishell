@@ -14,11 +14,11 @@ int	ft_here_doc(char *limiter)
 		return (-1);
 	}
 	pid = fork();
-	if (pid == -1)
+	/*if (pid == -1)
 	{
 		write(2, "heredoc: fork fails\n", 20);
 		return (-1);
-	}
+	}*/
 	if (pid == 0)
 	{
 		close(fd[0]);
@@ -40,7 +40,7 @@ void	ft_child_here_doc(char *limiter, int *fd)
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
-		input = get_next_line(0);
+		input = get_next_line(STDIN_FILENO);
 		if (input == NULL)
 		{
 			write(2, "warning: heredoc delimited by eof\n", 34);

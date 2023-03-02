@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/01 12:41:30 by sasha            ###   ########.fr        #
+#    Updated: 2023/03/02 11:59:42 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,13 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					dollar_exp_utils.c ft_dollar_exps.c \
 					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c \
 					ft_exps_and_split.c ft_field_split.c ft_rm_quote.c \
-					parsing.c ft_set_pipe.c ft_get_cmd.c \
-					test.c
+					parsing.c ft_set_pipe.c ft_get_cmd.c ft_init_command.c ft_redirect.c\
+					ft_here_doc.c \
+					test.c 
 
-LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c exec.c ft_file_descriptor.c ft_files.c \
-					ft_get_path_cmd.c ft_here_doc.c ft_free.c exec_pipe.c loop.c
+LIST_EXEC		= 
 
-LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c 
+LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c env_utils.c
 
 LIST_SIGNAL		=
 

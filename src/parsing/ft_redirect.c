@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/01 12:33:00 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/02 12:47:39 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
 			return (node);
 		if (!ft_strcmp(node->word, "<<") && node->is_op)
 		{
-			close(cmd->read_fd);
+			if (cmd->read_fd != STDIN_FILENO)
+				close(cmd->read_fd);
 			cmd->read_fd = ft_here_doc(node->next->word);
 		}
 		else if (((!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>")
