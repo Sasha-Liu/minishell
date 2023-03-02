@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dollar_exps.c                                   :+:      :+:    :+:   */
+/*   ft_exit_status_exp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 14:21:17 by hsliu            ###   ########.fr       */
+/*   Created: 2023/03/02 14:05:35 by hsliu             #+#    #+#             */
+/*   Updated: 2023/03/02 14:44:26 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	ft_init_local_var(char *word, int *quote_st, int *i, char **new_w)
-{
-	*i = 0;
-	*quote_st = ft_set_quote_state(word[0], 0);
-	*new_w = malloc(sizeof(char));
-	if (*new_w == NULL)
-	{
-		write(2, "malloc fails\n", 13);
-		return ;
-	}
-	**new_w = '\0';
-}
-
 /*
-    content of envp has the form:
-    key=value
-    if *word has part that's quoted by single quote, no change
-    otherwise, every "$key" will be replaced with "value"
-    $key is delimited by space or double quote
-
-	the calling function should free word and replace 
-	it with the returned new_word
+	Expend $? to exit status
+	Ex	$? -> 0
+	 	string$?string -> string0string
 */
-char	*ft_dollar_exps(char *word, t_token *env_lst)
+char	*ft_exit_exps_node(char *word)
 {
 	int		quote_state;
 	int		i;
@@ -46,12 +28,12 @@ char	*ft_dollar_exps(char *word, t_token *env_lst)
 		return (NULL);
 	while (word[i])
 	{
-		if (word[i] == '$' && word[i + 1] && quote_state != 1)
+		if (ft_strcmp(word + i, "$?") == 0 && quote_state != 1)
 		{
 			new_word = ft_strjoin_1(new_word, &word, i - 1);
 			if (!new_word)
 				return (NULL);
-			new_word = ft_strjoin_2(new_word, &word, env_lst);
+			new_word = ft_strjoin_3(new_word, &word);
 			if (!new_word)
 				return (NULL);
 			i = 0;
@@ -68,7 +50,7 @@ char	*ft_dollar_exps(char *word, t_token *env_lst)
 	iterate through the lst and apply word expansion to all token
 	in case of error, return 1
 */
-int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
+int	ft_exit_exps_lst(t_token *lst)
 {
 	char	*exp_word;
 
@@ -78,7 +60,7 @@ int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
 			;
 		else
 		{
-			exp_word = ft_dollar_exps(lst->word, env_lst);
+			exp_word = ft_exit_exps_node(lst->word);
 			if (!exp_word)
 			{
 				write(2, "exps fails\n", 11);
@@ -90,4 +72,32 @@ int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
 		lst = lst->next;
 	}
 	return (0);
+}
+
+/*
+	old start with $?
+	exit status is append to new word
+	old is advanced accordingly
+	g_exit_status is a global variable
+*/
+char	*ft_strjoin_3(char *new_word, char **old)
+{
+	char	*res;
+	char	*exit_str;
+	
+	exit_str = ft_itoa(g_exit_status);
+	if (exit_str == NULL)
+	{
+		write(2, "malloc fails\n", 13);
+		return (NULL);
+	}
+	res = ft_strjoin(new_word, exit_str);
+	if (res == NULL)
+	{
+		write(2, "malloc fails\n", 13);
+		return (NULL);
+	}
+	*old = *old + 2;
+	free(new_word);
+	return (res);
 }

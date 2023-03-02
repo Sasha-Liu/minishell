@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 13:54:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 14:40:47 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	printf("\n");
 }
 
+g_exit_status = 0;
 
 int main()
 {

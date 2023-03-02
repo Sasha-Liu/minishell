@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 13:52:42 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/02 14:41:15 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*ft_get_para(char *search_key, t_token *env_lst);
 /***  ft_dollar_exps  ***/
 char	*ft_dollar_exps(char *word, t_token *env_lst);
 int		ft_dollar_exps_lst(t_token *lst, t_token *env_lst);
+void	ft_init_local_var(char *word, int *quote_st, int *i, char **new_w);
 
 /***  ft_get_homedir  ***/
 char	*ft_get_homedir(char *login);
@@ -104,5 +105,10 @@ int	    ft_write_file(t_token *lst, char *op);*/
 /*	ft_here_doc.c	*/
 int	    ft_here_doc(char *limiter);
 void	ft_child_here_doc(char *limiter, int *fd);
+
+/*	ft_exist_status_exp.c	*/
+char	*ft_exit_exps_node(char *word);
+int		ft_exit_exps_lst(t_token *lst);
+char	*ft_strjoin_3(char *new_word, char **old);
 
 #endif

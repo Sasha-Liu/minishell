@@ -6,7 +6,7 @@
 #    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/02 11:59:42 by hsliu            ###   ########.fr        #
+#    Updated: 2023/03/02 14:40:10 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c \
 					ft_exps_and_split.c ft_field_split.c ft_rm_quote.c \
 					parsing.c ft_set_pipe.c ft_get_cmd.c ft_init_command.c ft_redirect.c\
-					ft_here_doc.c \
+					ft_here_doc.c ft_exit_status_exp.c\
 					test.c 
 
 LIST_EXEC		= 
