@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
+#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/02 14:40:10 by hsliu            ###   ########.fr        #
+#    Updated: 2023/03/08 12:13:02 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,8 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					ft_exps_and_split.c ft_field_split.c ft_rm_quote.c \
 					parsing.c ft_set_pipe.c ft_get_cmd.c ft_init_command.c ft_redirect.c\
 					ft_here_doc.c ft_exit_status_exp.c\
-					test.c 
 
-LIST_EXEC		= 
+LIST_EXEC		=  main.c
 
 LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c env_utils.c
 
