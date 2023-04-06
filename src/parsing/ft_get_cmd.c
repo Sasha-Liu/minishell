@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 16:54:16 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/10 14:31:15 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_cmd	*ft_malloc_cmd(int n)
 		cmd[i].append_file = NULL;
 		cmd[i].read_fd = 0;
 		cmd[i].write_fd = 1;
-		cmd[i].child_pid = 0;
+		cmd[i].child_pid = 1;
 		cmd[i].exit_status = 0;
 		i++;
 	}

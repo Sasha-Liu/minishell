@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 20:31:13 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/06 12:07:58 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int		ft_pwd(char **argv);
 int		ft_export(char **argv, t_shell *shell);
 int		ft_unset(char **argv, t_shell *shell);
 int		ft_env(char **argv, t_shell *shell);
-void	ft_exit(t_shell *shell);
+
+int		test_exit(char **argv);
+void	ft_exit(char **argv, t_shell *shell);
+void	ft_exit_standart(t_shell *shell);
+void	ft_exit_without_free(t_shell *shell);
 
 int     ft_illegal_name(char *name);
 int	    ft_name_len(char *str);

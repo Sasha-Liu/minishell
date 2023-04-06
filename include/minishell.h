@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 14:40:30 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/10 14:31:07 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_cmd{
 	char	*append_file;
 	int		write_fd;
 	int		read_fd;
-	int		child_pid; // init to 0
+	int		child_pid; // init to 1
 	int		exit_status; //init to 0
 }	t_cmd;
 

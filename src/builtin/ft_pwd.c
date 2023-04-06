@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:53:54 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 19:06:20 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/05 14:04:09 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	ft_pwd(char **argv)
 	if (argv[1] && ft_strncmp(argv[1], "-", 1) == 0)
 	{
 		write(2, "pwd: invalid option\n", 20);
-		return (1);
+		exit (2);
 	}
 	pwd = ft_malloc_getcwd();
 	if (pwd == NULL)
 	{
-		return (1);
+		exit (1);
 	}
 	write(1, pwd, ft_strlen(pwd));
 	write(1, "\n", 1);
 	free(pwd);
-	return (0);
+	exit (0);
 }
 
 static char	*ft_malloc_getcwd(void)

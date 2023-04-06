@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/08 12:13:02 by sasha            ###   ########.fr        #
+#    Updated: 2023/04/05 15:48:10 by pchapuis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,17 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					parsing.c ft_set_pipe.c ft_get_cmd.c ft_init_command.c ft_redirect.c\
 					ft_here_doc.c ft_exit_status_exp.c\
 
-LIST_EXEC		=  main.c
+LIST_EXEC		=	main.c \
+					exec.c \
+					get_path.c \
+					launch.c \
+					close.c \
+					error.c \
+					builtin.c \
+					signal.c \
+					signal_handle.c
 
-LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c env_utils.c
+LIST_BUILTIN	=	ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c env_utils.c
 
 LIST_SIGNAL		=
 

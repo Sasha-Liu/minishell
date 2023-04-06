@@ -8,6 +8,7 @@ int	ft_here_doc(char *limiter)
 	int		pid;
 	int		wstatus;
 	
+	unplug_signals();
 	if (pipe(fd) == -1)
 	{
 		write(2, "heredoc: pipe fails\n", 20);
@@ -29,6 +30,11 @@ int	ft_here_doc(char *limiter)
 	{
 		close(fd[1]);
 		wait(&wstatus);
+		if (WIFEXITED(wstatus))
+		{
+			if (WEXITSTATUS(wstatus) == 130)
+				return (-1);
+		}
 		return (fd[0]);
 	}
 }
@@ -39,6 +45,7 @@ void	ft_child_here_doc(char *limiter, int *fd)
 
 	while (1)
 	{
+		set_heredoc_signals();
 		write(1, "heredoc> ", 9);
 		input = get_next_line(STDIN_FILENO);
 		if (input == NULL)
