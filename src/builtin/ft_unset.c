@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:10:19 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 16:38:50 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:37:26 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_unset(char **argv, t_shell *shell)
 		i++;
 	}
 	ft_update_env_array(shell);
-	exit (ret);
+	return (ret);
 }
 
 static void	ft_free_var(char *var, t_token **lst)

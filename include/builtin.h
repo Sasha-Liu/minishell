@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/06 12:07:58 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:53:59 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		ft_export(char **argv, t_shell *shell);
 int		ft_unset(char **argv, t_shell *shell);
 int		ft_env(char **argv, t_shell *shell);
 
-int		test_exit(char **argv);
 void	ft_exit(char **argv, t_shell *shell);
 void	ft_exit_standart(t_shell *shell);
 void	ft_exit_without_free(t_shell *shell);

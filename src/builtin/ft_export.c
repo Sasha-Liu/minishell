@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/05 14:05:14 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:37:07 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_export(char **argv, t_shell *shell)
 	if (argv[1] == NULL)
 	{
 		write(2, "no argument\n", 20);
-		exit (1);
+		return (1);
 	}
 	ret = 0;
 	i = 1;
@@ -45,7 +45,7 @@ int	ft_export(char **argv, t_shell *shell)
 		i++;
 	}
 	ft_update_env_array(shell);
-	exit (ret);
+	return (ret);
 }
 
 /*

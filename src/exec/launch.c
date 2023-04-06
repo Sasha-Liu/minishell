@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/06 15:13:34 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:06:47 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ int	ft_dup(t_shell *shell, int i)
 int	launch(t_shell *shell, int i)
 {
 	if (shell->cmd[i].read_fd == -1)
-		exit (130);
+		exit(130);
 	if (get_path(shell, i) == 1)
 	{
 		g_exit_status = 127;
-		exit (127);
+		exit(127);
 	}
 	if (ft_dup(shell, i) == 1)
-		exit (1);
+		exit(1);
 	if (ft_strnstr(shell->cmd[i].args[0], "/",
 			ft_strlen(shell->cmd[i].args[0])) != NULL)
 	{
@@ -114,8 +114,9 @@ int	launch(t_shell *shell, int i)
 	}
 	else
 	{
-		builtin(shell, i);
+		if (shell->cmd_size == 1)
+			ft_exit_standart(shell);
+		exit(builtin(shell, i, 1));
 	}
-	return (0);
-//	exit (0);
+	exit(g_exit_status);
 }

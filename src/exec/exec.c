@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:45:51 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/06 15:19:08 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:57:01 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,7 @@ int	exec(t_shell *shell)
 	int	i;
 	
 	i = 0;
-//	set_exec_signals();
-	unplug_signals();
-//	if (shell->cmd_size == 1)
-//	{
-//		launch(shell, i);
-//		return (0);
-//	}
+	set_exec_signals();
 	while (i < shell->cmd_size)
 	{
 		shell->cmd[i].child_pid = fork();
@@ -56,7 +50,6 @@ int	exec(t_shell *shell)
 			return (perror("Fork"), 1);
 		if (shell->cmd[i].child_pid == 0)
 		{
-			set_exec_signals();
 			if (launch(shell, i) == 1)
 				return (1);
 		}
@@ -65,5 +58,8 @@ int	exec(t_shell *shell)
 	if (close_all(shell) == 1)
 		return (1);
 	ft_wait(shell);
+	if (ft_strnstr(shell->cmd[0].args[0], "/",
+			ft_strlen(shell->cmd[0].args[0])) == NULL && shell->cmd_size == 1)
+		ft_exit_standart(shell);
 	return (0);
 }

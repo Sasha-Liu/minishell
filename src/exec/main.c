@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/06 15:19:23 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:08:48 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int main()
 {
 	t_shell shell;
 	char    *buffer;
+	int		pid;
 
 	if (ft_get_env(&shell))
 	{
@@ -78,21 +79,30 @@ int main()
 		else
 		{
 			add_history(buffer);
-			//le nouveau fork permet de conserver les actions des signaux apres execve
-		//	unplug_signals();
-		//	int	pid;
-		//	pid = fork();
-		//	if (pid == 0)
-		//	{
+			unplug_signals();
+			pid = fork();
+			if (pid == 0)
+			{
 				if (exec(&shell) == 1)
 					return (ft_exit_standart(&shell), 1);
-		//		exit (0);
-		//	}
-		//	waitpid(pid, NULL, 0);
-			
-		//	ft_print_cmd(shell.cmd, shell.cmd_size);
-			if (ft_strcmp(shell.cmd->args[0], "exit") == 0 && test_exit(shell.cmd->args) == 1)
-				ft_exit_standart(&shell);
+				exit (g_exit_status);
+			}
+			int wstatus;
+			waitpid(pid, &wstatus, 0);
+			if (WIFEXITED(wstatus))
+				g_exit_status = WEXITSTATUS(wstatus);
+			if (WIFSIGNALED(wstatus))
+			{
+				g_exit_status = WTERMSIG(wstatus);
+				if (g_exit_status != 131)
+					g_exit_status += 128;
+			}
+			if (ft_strnstr(shell.cmd[0].args[0], "/",
+					ft_strlen(shell.cmd[0].args[0])) == NULL && shell.cmd_size == 1)
+			{
+				builtin(&shell, 0, 0);
+			}
+			//ft_print_cmd(shell.cmd, shell.cmd_size);
 		}
 		ft_free_cmd(shell.cmd, shell.cmd_size);
 		shell.cmd = NULL;

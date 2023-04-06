@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:58:31 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/06 12:25:05 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:53:51 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,6 @@ int	is_valid(char *str)
 	if (str[i] == '\0')
 		return (1);
 	return (0);
-}
-
-int	test_exit(char **argv)
-{
-	if (argv[1] != NULL)
-	{
-		if (is_valid(argv[1]) == 0)
-		{
-			g_exit_status = 2;
-			return (1);
-		}
-		else if (argv[2] != NULL)
-		{
-			g_exit_status = 1;
-			return (0);
-		}
-		else
-		{
-			g_exit_status = ft_atoi(argv[1]);
-			return (1);
-		}
-	}
-	return (1);
 }
 
 void	ft_exit(char **argv, t_shell *shell)
