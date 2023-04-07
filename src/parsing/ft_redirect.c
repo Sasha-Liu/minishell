@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:40:15 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:43:30 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,17 @@ void	ft_update_file(t_token *node, t_cmd *cmd)
 	file = node->next->word;
 	if (ft_strcmp(op, "<") == 0)
 	{
+		//free
 		cmd->read_file = file;
 	}
 	else if (ft_strcmp(op, ">") == 0)
 	{
+		//free
 		cmd->write_file = file;
 	}
 	else if (ft_strcmp(op, ">>") == 0)
 	{
+		//free
 		cmd->append_file = file;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:42:02 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:50:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	ft_init_one(t_token *node, t_cmd *cmd)
 
 	i = 0;
 	count = ft_count_args(node);
+	if (count == 0)
+	{
+		cmd->args = NULL;
+		return (0);
+	}
 	args = malloc(sizeof(char *) * (count + 1));
 	if (args == NULL)
 	{
