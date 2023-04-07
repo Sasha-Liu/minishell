@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:09:04 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 14:24:27 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:07:49 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int	check_builtin(t_shell *shell, int i)
 {
-	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
-		return (1);
+	if (shell->cmd[0].args == NULL || shell->cmd_size != 1)
+		return (0);
 	if (ft_strcmp(shell->cmd[i].args[0], "cd") == 0)
 		return (1);
 	if (ft_strcmp(shell->cmd[i].args[0], "pwd") == 0)

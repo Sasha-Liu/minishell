@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 14:24:59 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:10:36 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	printf("\n");
 }
 
+void	reset(t_shell *shell, char *buffer)
+{
+	ft_free_cmd(shell->cmd, shell->cmd_size);
+	shell->cmd = NULL;
+	*buffer = '\0';
+	free(buffer);
+}
+
 int main()
 {
 	t_shell shell;
@@ -94,31 +102,16 @@ int main()
 			}
 			if (close_all(&shell) == 1)
 				return (1);
-			int wstatus;
-			waitpid(pid, &wstatus, 0);
-			if (WIFEXITED(wstatus))
-				g_exit_status = WEXITSTATUS(wstatus);
-			if (WIFSIGNALED(wstatus))
+			wait_solo_process(pid);
+			if (check_builtin(&shell, 0) == 1)
 			{
-				g_exit_status = WTERMSIG(wstatus);
-				if (g_exit_status != 131)
-					g_exit_status += 128;
-			}
-			if (shell.cmd[0].args != NULL && shell.cmd_size == 1)
-			{
-				if (check_builtin(&shell, 0) == 1 && ft_strcmp(shell.cmd[0].args[0], "echo") != 0)
-				{
-					if (ft_dup(&shell, 0) == 1)
-						return (ft_exit_standart(&shell), 1);
-					builtin(&shell, 0, 0);
-				}
+				if (ft_dup(&shell, 0) == 1)
+					return (ft_exit_standart(&shell), 1);
+				builtin(&shell, 0, 0);
 			}
 			//ft_print_cmd(shell.cmd, shell.cmd_size);
 		}
-		ft_free_cmd(shell.cmd, shell.cmd_size);
-		shell.cmd = NULL;
-		*buffer = '\0';
-		free(buffer);
+		reset(&shell, buffer);
 	}
 	ft_exit_without_free(&shell);
 	return (1);

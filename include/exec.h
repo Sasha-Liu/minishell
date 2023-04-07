@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:51:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 14:24:32 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:49:28 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		ft_open(t_cmd *cmd);
 
 void	close_pipe(t_shell *shell, int nb);
 int		close_all(t_shell *shell);
+
+void	ft_wait(t_shell *shell);
+void	wait_solo_process(int pid);
 
 void	error_cmd(char *cmd);
 
