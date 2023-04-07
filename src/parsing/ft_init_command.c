@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 11:50:29 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 16:35:09 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ int	ft_init_one(t_token *node, t_cmd *cmd)
 	}
 	args = malloc(sizeof(char *) * (count + 1));
 	if (args == NULL)
-	{
 		return (1);
-	}
 	while (i < count)
 	{
 		args[i] = node->word;

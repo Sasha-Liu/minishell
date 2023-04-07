@@ -6,43 +6,13 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:10:26 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 16:27:08 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:51:31 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "minishell.h"
 #include "exec.h"
-
-static void	free_path(char **all_paths, char **cmd, int status)
-{
-	int	i;
-
-	if (status == 0)
-		free(*cmd);
-	i = 0;
-	while (all_paths[i] != NULL)
-	{
-		free(all_paths[i]);
-		i ++;
-	}
-	free(all_paths);
-}
-
-static char	*create_path(char *cmd, char *path_test)
-{
-	char	*path;
-	char	*temp;
-
-	temp = ft_strjoin(path_test, "/");
-	if (!temp)
-		return (NULL);
-	path = ft_strjoin(temp, cmd);
-	free(temp);
-	if (!path)
-		return (NULL);
-	return (path);
-}
 
 char	**find_all_paths(char **envp, char **cmd)
 {
@@ -74,8 +44,8 @@ int	find_path(char **cmd, char **envp)
 	all_paths = find_all_paths(envp, cmd);
 	if (!all_paths)
 		return (1);
-	i = 0;
-	while (all_paths[i])
+	i = -1;
+	while (all_paths[++i])
 	{
 		path = create_path(*cmd, all_paths[i]);
 		if (!path)
@@ -90,7 +60,6 @@ int	find_path(char **cmd, char **envp)
 			return (0);
 		}
 		free(path);
-		i ++;
 	}
 	return (free_path(all_paths, cmd, 1), 1);
 }

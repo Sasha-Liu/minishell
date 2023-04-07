@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 12:12:56 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:37:09 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_token{
 typedef struct s_shell{
 	char	**env_tab;
 	t_token	*env_lst;
-//	int		exit_status;
 	t_cmd	*cmd;
 	int		cmd_size;
 }	t_shell;
@@ -61,8 +60,8 @@ typedef struct s_cmd{
 	char	*append_file;
 	int		write_fd;
 	int		read_fd;
-	int		child_pid; // init to 1
-	int		exit_status; //init to 0
+	int		child_pid;
+	int		exit_status;
 	int		is_builtin;
 }	t_cmd;
 

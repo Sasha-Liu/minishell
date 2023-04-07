@@ -6,7 +6,7 @@
 #    By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/07 14:48:49 by pchapuis         ###   ########.fr        #
+#    Updated: 2023/04/07 16:43:42 by pchapuis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 LIST_EXEC		=	main.c \
 					exec.c \
 					get_path.c \
+					get_path_utils.c \
 					launch.c \
 					close.c \
 					error.c \
