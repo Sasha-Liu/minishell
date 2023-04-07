@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:14:43 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/13 12:47:32 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:37:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 void	ft_rm_quote_lst(t_token *lst)
 {
-    while (lst != NULL)
+	while (lst != NULL)
 	{
 		ft_rm_quote_word(lst->word);
 		lst = lst->next;

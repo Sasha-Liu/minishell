@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:35 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/02 14:44:26 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:31:17 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*ft_strjoin_3(char *new_word, char **old)
 {
 	char	*res;
 	char	*exit_str;
-	
+
 	exit_str = ft_itoa(g_exit_status);
 	if (exit_str == NULL)
 	{

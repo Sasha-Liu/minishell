@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_here_doc.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/07 10:43:28 by hsliu             #+#    #+#             */
+/*   Updated: 2023/04/07 10:43:32 by hsliu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "exec.h"
 #include "minishell.h"
 #include "parsing.h"
@@ -7,7 +19,7 @@ int	ft_here_doc(char *limiter)
 	int		fd[2];
 	int		pid;
 	int		wstatus;
-	
+
 	unplug_signals();
 	if (pipe(fd) == -1)
 	{
@@ -54,7 +66,7 @@ void	ft_child_here_doc(char *limiter, int *fd)
 			close(fd[1]);
 			return ;
 		}
-		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0 
+		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0
 			&& ft_strlen(input) == (ft_strlen(limiter) + 1))
 		{
 			free(input);
