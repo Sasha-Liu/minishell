@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:35 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:31:17 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:25:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_exit_exps_node(char *word)
 		return (NULL);
 	while (word[i])
 	{
-		if (ft_strcmp(word + i, "$?") == 0 && quote_state != 1)
+		if (ft_strncmp(word + i, "$?", 2) == 0 && quote_state != 1)
 		{
 			new_word = ft_strjoin_1(new_word, &word, i - 1);
 			if (!new_word)
