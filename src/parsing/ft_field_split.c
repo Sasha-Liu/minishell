@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:43:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:41:23 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:46:23 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	ft_set_pointer(t_token *n1, t_token *n2, t_token *pre, t_token *nex)
 	n2->prev = n1;
 	n2->next = nex;
 	if (pre != NULL)
-		prev->next = n1;
+		pre->next = n1;
 	if (nex != NULL)
-		next->prev = n2;
+		nex->prev = n2;
 }
 
 /*
