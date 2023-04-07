@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:10:26 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/03/28 15:50:07 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:27:08 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*create_path(char *cmd, char *path_test)
 	return (path);
 }
 
-char	**find_all_paths(char **envp)
+char	**find_all_paths(char **envp, char **cmd)
 {
 	char	**all_paths;
 	int		i;
@@ -52,6 +52,13 @@ char	**find_all_paths(char **envp)
 	i = 0;
 	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == NULL)
 		i ++;
+	if (envp[i] == NULL)
+	{
+		write(2, "bash: ", 7);
+		write(2, cmd[0], ft_strlen(cmd[0]));
+		write(2, ": No such file or directory\n", 29);
+		exit(127);
+	}
 	all_paths = ft_split(ft_strnstr(envp[i], "PATH", 4), ':');
 	if (!all_paths)
 		return (NULL);
@@ -64,7 +71,7 @@ int	find_path(char **cmd, char **envp)
 	char	*path;
 	int		i;
 
-	all_paths = find_all_paths(envp);
+	all_paths = find_all_paths(envp, cmd);
 	if (!all_paths)
 		return (1);
 	i = 0;
