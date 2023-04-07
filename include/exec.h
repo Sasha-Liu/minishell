@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:51:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 14:49:28 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:27:19 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <errno.h>
 # include <signal.h>
 
-void	ft_print_lst(t_token *lst);
 void	ft_print_cmd(t_cmd *cmd, int size);
 
 int		exec(t_shell *shell);

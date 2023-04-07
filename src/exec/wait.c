@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:45:18 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 14:49:32 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:50:37 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_wait(t_shell *shell)
 
 void	wait_solo_process(int pid)
 {
-	int wstatus;
+	int	wstatus;
+
 	waitpid(pid, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		g_exit_status = WEXITSTATUS(wstatus);

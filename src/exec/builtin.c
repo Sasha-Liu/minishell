@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:09:04 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 15:07:49 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:24:59 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	check_builtin(t_shell *shell, int i)
 {
-	if (shell->cmd[0].args == NULL || shell->cmd_size != 1)
+	if (shell->cmd[0].args == NULL)
 		return (0);
 	if (ft_strcmp(shell->cmd[i].args[0], "cd") == 0)
 		return (1);
@@ -36,8 +36,8 @@ int	check_builtin(t_shell *shell, int i)
 
 int	builtin(t_shell *shell, int i, int status)
 {
-	int tmp;
-	
+	int	tmp;
+
 	tmp = 0;
 	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
 		tmp = ft_echo(shell->cmd[i].args);

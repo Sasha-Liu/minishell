@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exps_and_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:32:10 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:43:30 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_exist_unquoted_space(char *word)
 	while (word[i])
 	{
 		if (word[i] == ' ' && quote_state == 0)
-			return (i);
+			return (1);
 		i++;
 		quote_state = ft_set_quote_state(word[i], quote_state);
 	}

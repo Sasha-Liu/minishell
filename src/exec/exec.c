@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:45:51 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 14:45:30 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:26:19 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	exec(t_shell *shell)
 {
 	int	i;
-	
+
 	i = 0;
 	set_exec_signals();
 	while (i < shell->cmd_size)

@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/10 11:47:02 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:27:23 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PARSING_H
 
 # include "minishell.h"
-
-void	ft_print_lst(t_token *lst);
 
 /***  line_to_token_utils.c  ***/
 int		ft_is_operator(char *buffer);

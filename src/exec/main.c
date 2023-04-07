@@ -6,26 +6,13 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 15:10:36 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:51:32 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "minishell.h"
 #include "exec.h"
-
-void	ft_print_lst(t_token *lst)
-{
-	if (!lst)
-	{
-		printf("lst empty\n");
-	}
-	while (lst)
-	{
-		printf("%s -> ", lst->word);
-		lst = lst->next;
-	}
-}
 
 void	ft_print_cmd(t_cmd *cmd, int size)
 {
@@ -54,7 +41,6 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 		printf("write_file %s \n", cmd[i].write_file);
 		printf("write_fd %d \n", cmd[i].write_fd);
 		printf("append_file %s \n", cmd[i].append_file);
-		
 		i++;
 	}
 	printf("\n");
@@ -68,17 +54,40 @@ void	reset(t_shell *shell, char *buffer)
 	free(buffer);
 }
 
-int main()
+int	temp(t_shell *shell, char *buffer)
 {
-	t_shell shell;
-	char    *buffer;
-	int		pid;
+	int	pid;
+
+	add_history(buffer);
+	unplug_signals();
+	pid = fork();
+	if (pid == -1)
+		return (perror("Fork"), 1);
+	if (pid == 0)
+	{
+		if (exec(shell) == 1)
+			g_exit_status = 1;
+		ft_exit_standart(shell);
+	}
+	if (close_all(shell) == 1)
+		return (1);
+	wait_solo_process(pid);
+	if (check_builtin(shell, 0) == 1 && shell->cmd_size == 1)
+	{
+		if (ft_dup(shell, 0) == 1)
+			return (1);
+		builtin(shell, 0, 0);
+	}
+	return (0);
+}
+
+int	main(void)
+{
+	t_shell	shell;
+	char	*buffer;
 
 	if (ft_init_shell(&shell))
-	{
 		return (1);
-	}
-	g_exit_status = 0;
 	while (1)
 	{
 		set_interactive_signals();
@@ -86,30 +95,14 @@ int main()
 		buffer = readline("minishell-> ");
 		if (buffer == NULL)
 			break ;
-		if (ft_parsing(buffer, &shell))
-			write(2, "parsing fails\n", 14);
-		else
+		if (!ft_parsing(buffer, &shell))
 		{
-			//ft_print_cmd(shell.cmd, shell.cmd_size);
-			add_history(buffer);
-			unplug_signals();
-			pid = fork();
-			if (pid == 0)
+			if (temp (&shell, buffer) == 1)
 			{
-				if (exec(&shell) == 1)
-					g_exit_status = 1;
+				g_exit_status = 1;
 				ft_exit_standart(&shell);
 			}
-			if (close_all(&shell) == 1)
-				return (1);
-			wait_solo_process(pid);
-			if (check_builtin(&shell, 0) == 1)
-			{
-				if (ft_dup(&shell, 0) == 1)
-					return (ft_exit_standart(&shell), 1);
-				builtin(&shell, 0, 0);
-			}
-			//ft_print_cmd(shell.cmd, shell.cmd_size);
+		//	ft_print_cmd(shell.cmd, shell.cmd_size);
 		}
 		reset(&shell, buffer);
 	}

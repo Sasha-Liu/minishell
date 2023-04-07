@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 14:25:25 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:25:42 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,14 @@ int	get_path(t_shell *shell, int i)
 	shell->cmd[i].is_builtin = 0;
 	if (shell->cmd[i].args == NULL)
 		return (0);
-	if (ft_strcmp(shell->cmd[i].args[0], "cd") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "pwd") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "export") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "unset") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "env") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "exit") == 0)
+	else if (check_builtin(shell, i) == 1)
 	{
 		shell->cmd[i].is_builtin = 1;
 		return (0);
 	}
-	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
-	{
+	else if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
 		shell->cmd[i].is_builtin = 2;
-		return (0);
-	}
-	if (ft_strnstr(shell->cmd[i].args[0], "/",
+	else if (ft_strnstr(shell->cmd[i].args[0], "/",
 			ft_strlen(shell->cmd[i].args[0])) != NULL)
 	{
 		if (direct_path(shell->cmd[i].args) == 1)
@@ -93,7 +85,6 @@ int	ft_dup(t_shell *shell, int i)
 	}
 	if (shell->cmd[i].write_fd != 1)
 	{
-		
 		if (dup2(shell->cmd[i].write_fd, STDOUT_FILENO) == -1)
 			return (perror("dup2"), 1);
 		if (close(shell->cmd[i].write_fd) != 0)
@@ -119,7 +110,7 @@ int	launch(t_shell *shell, int i)
 	{
 		if (execve(shell->cmd[i].args[0], shell->cmd[i].args,
 				shell->env_tab) == -1)
-		return (perror("execve"), 1);
+			return (perror("execve"), 1);
 	}
 	else if (shell->cmd[i].args != NULL)
 	{
