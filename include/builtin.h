@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/06 15:53:59 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:38:55 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int     ft_illegal_name(char *name);
 int	    ft_name_len(char *str);
 
 /*	utils	*/
-void    ft_update_env_array(t_shell *shell);
+int		ft_update_env_array(t_shell *shell);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:51:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/06 16:05:49 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:17:51 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int		direct_path(char **cmd);
 int		find_path(char **cmd, char **envp);
 
 int		launch(t_shell *shell, int i);
+
+int		ft_dup(t_shell *shell, int i);
+int		ft_open(t_cmd *cmd);
 
 void	close_pipe(t_shell *shell, int nb);
 int		close_all(t_shell *shell);

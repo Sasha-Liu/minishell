@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/06 16:06:47 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:25:48 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 
 int	get_path(t_shell *shell, int i)
 {
-	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0
-		|| ft_strcmp(shell->cmd[i].args[0], "cd") == 0
+	shell->cmd[i].is_builtin = 0;
+	if (shell->cmd[i].args == NULL)
+		return (0);
+	if (ft_strcmp(shell->cmd[i].args[0], "cd") == 0
 		|| ft_strcmp(shell->cmd[i].args[0], "pwd") == 0
 		|| ft_strcmp(shell->cmd[i].args[0], "export") == 0
 		|| ft_strcmp(shell->cmd[i].args[0], "unset") == 0
 		|| ft_strcmp(shell->cmd[i].args[0], "env") == 0
 		|| ft_strcmp(shell->cmd[i].args[0], "exit") == 0)
 	{
+		shell->cmd[i].is_builtin = 1;
+		return (0);
+	}
+	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
+	{
+		shell->cmd[i].is_builtin = 2;
 		return (0);
 	}
 	if (ft_strnstr(shell->cmd[i].args[0], "/",
@@ -37,7 +45,6 @@ int	get_path(t_shell *shell, int i)
 		if (find_path(&shell->cmd[i].args[0], shell->env_tab) == 1)
 			return (error_cmd(shell->cmd[i].args[0]), 1);
 	}
-	i ++;
 	return (0);
 }
 
@@ -103,19 +110,18 @@ int	launch(t_shell *shell, int i)
 		g_exit_status = 127;
 		exit(127);
 	}
+	if (shell->cmd[0].is_builtin == 1 && shell->cmd_size == 1)
+		ft_exit_standart(shell);
 	if (ft_dup(shell, i) == 1)
 		exit(1);
-	if (ft_strnstr(shell->cmd[i].args[0], "/",
-			ft_strlen(shell->cmd[i].args[0])) != NULL)
+	if (shell->cmd[i].is_builtin == 0 && shell->cmd[i].args != NULL)
 	{
 		if (execve(shell->cmd[i].args[0], shell->cmd[i].args,
 				shell->env_tab) == -1)
 		return (perror("execve"), 1);
 	}
-	else
+	else if (shell->cmd[i].args != NULL)
 	{
-		if (shell->cmd_size == 1)
-			ft_exit_standart(shell);
 		exit(builtin(shell, i, 1));
 	}
 	exit(g_exit_status);

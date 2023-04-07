@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 11:53:28 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 13:49:42 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int main()
 			write(2, "parsing fails\n", 14);
 		else
 		{
-			//ft_print_cmd(shell.cmd, shell.cmd_size);
+		//	ft_print_cmd(shell.cmd, shell.cmd_size);
 			add_history(buffer);
 			unplug_signals();
 			pid = fork();
@@ -92,6 +92,8 @@ int main()
 					return (ft_exit_standart(&shell), 1);
 				exit (g_exit_status);
 			}
+			if (close_all(&shell) == 1)
+				return (1);
 			int wstatus;
 			waitpid(pid, &wstatus, 0);
 			if (WIFEXITED(wstatus))
@@ -102,10 +104,15 @@ int main()
 				if (g_exit_status != 131)
 					g_exit_status += 128;
 			}
-			if (ft_strnstr(shell.cmd[0].args[0], "/",
+			if (shell.cmd[0].args != NULL && ft_strnstr(shell.cmd[0].args[0], "/",
 					ft_strlen(shell.cmd[0].args[0])) == NULL && shell.cmd_size == 1)
 			{
-				builtin(&shell, 0, 0);
+				if (ft_strcmp(shell.cmd[0].args[0], "echo") != 0)
+				{
+					if (ft_dup(&shell, 0) == 1)
+						return (ft_exit_standart(&shell), 1);
+					builtin(&shell, 0, 0);
+				}
 			}
 			//ft_print_cmd(shell.cmd, shell.cmd_size);
 		}
