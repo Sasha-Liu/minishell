@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/10 11:47:02 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:06:11 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_case_tilde(char *word, char *home);
 char	*ft_get_home(t_token *env_lst);
 
 /***  ft_tilde_exps.c  ***/
-int ft_tilde_exps_lst(t_token *lst, t_token *env_lst);
+int		ft_tilde_exps_lst(t_token *lst, t_token *env_lst);
 
 /***  ft_exps_and_split.c  ***/
 int		ft_exps_and_split(t_token **lst, t_token *env_lst);
@@ -78,8 +78,8 @@ int		ft_syntax_err_2(t_token *lst);
 int		ft_exist_unquoted_space(char *word);
 
 /***  ft_field_split.c  ***/
-int 	ft_split_lst(t_token **lst);
-int 	ft_split_word(t_token **node);
+int		ft_split_lst(t_token **lst);
+int		ft_split_word(t_token **node);
 
 /***	ft_rm_quote.c	***/
 void	ft_rm_quote_lst(t_token *lst);
@@ -93,17 +93,13 @@ void	ft_delete_redirect_lst(t_token **lst);
 t_token	*ft_delete_redirect_node(t_token *node1);
 
 /***	ft_init_command.c 	***/
-int 	ft_init_command(t_token *lst, t_cmd *cmd, int size);
+int		ft_init_command(t_token *lst, t_cmd *cmd, int size);
 int		ft_init_one(t_token *node, t_cmd *cmd);
-int 	ft_count_args(t_token *node);
-t_token *ft_next_cmd(t_token *node);
-
-/*	ft_files.c	
-int	    ft_read_file(t_token *lst, char *op);
-int	    ft_write_file(t_token *lst, char *op);*/
+int		ft_count_args(t_token *node);
+t_token	*ft_next_cmd(t_token *node);
 
 /*	ft_here_doc.c	*/
-int	    ft_here_doc(char *limiter);
+int		ft_here_doc(char *limiter);
 void	ft_child_here_doc(char *limiter, int *fd);
 
 /*	ft_exist_status_exp.c	*/
