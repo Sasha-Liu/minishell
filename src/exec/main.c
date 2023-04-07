@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 13:49:42 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:24:59 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ int main()
 			write(2, "parsing fails\n", 14);
 		else
 		{
-		//	ft_print_cmd(shell.cmd, shell.cmd_size);
+			//ft_print_cmd(shell.cmd, shell.cmd_size);
 			add_history(buffer);
 			unplug_signals();
 			pid = fork();
 			if (pid == 0)
 			{
 				if (exec(&shell) == 1)
-					return (ft_exit_standart(&shell), 1);
-				exit (g_exit_status);
+					g_exit_status = 1;
+				ft_exit_standart(&shell);
 			}
 			if (close_all(&shell) == 1)
 				return (1);
@@ -104,10 +104,9 @@ int main()
 				if (g_exit_status != 131)
 					g_exit_status += 128;
 			}
-			if (shell.cmd[0].args != NULL && ft_strnstr(shell.cmd[0].args[0], "/",
-					ft_strlen(shell.cmd[0].args[0])) == NULL && shell.cmd_size == 1)
+			if (shell.cmd[0].args != NULL && shell.cmd_size == 1)
 			{
-				if (ft_strcmp(shell.cmd[0].args[0], "echo") != 0)
+				if (check_builtin(&shell, 0) == 1 && ft_strcmp(shell.cmd[0].args[0], "echo") != 0)
 				{
 					if (ft_dup(&shell, 0) == 1)
 						return (ft_exit_standart(&shell), 1);

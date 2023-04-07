@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:51:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 12:17:51 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:24:32 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		close_all(t_shell *shell);
 void	error_cmd(char *cmd);
 
 int		builtin(t_shell *shell, int i, int status);
+int		check_builtin(t_shell *shell, int i);
 
 void	set_interactive_signals(void);
 void	set_exec_signals(void);

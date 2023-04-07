@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:45:51 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 13:26:29 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:12:35 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ int	exec(t_shell *shell)
 	if (close_all(shell) == 1)
 		return (1);
 	ft_wait(shell);
-	if (shell->cmd[0].args != NULL && ft_strnstr(shell->cmd[0].args[0], "/",
-			ft_strlen(shell->cmd[0].args[0])) == NULL && shell->cmd_size == 1)
-	{
-		if (ft_strcmp(shell->cmd[i].args[0], "echo") != 0)
-			ft_exit_standart(shell);
-	}
+	ft_exit_standart(shell);
 	return (0);
 }

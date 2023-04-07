@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 13:25:48 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:25:25 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	ft_dup(t_shell *shell, int i)
 	}
 	if (shell->cmd[i].write_fd != 1)
 	{
+		
 		if (dup2(shell->cmd[i].write_fd, STDOUT_FILENO) == -1)
 			return (perror("dup2"), 1);
 		if (close(shell->cmd[i].write_fd) != 0)

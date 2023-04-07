@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:09:04 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 12:42:27 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:24:27 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,25 @@
 #include "minishell.h"
 #include "exec.h"
 #include "builtin.h"
+
+int	check_builtin(t_shell *shell, int i)
+{
+	if (ft_strcmp(shell->cmd[i].args[0], "echo") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "cd") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "pwd") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "export") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "unset") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "env") == 0)
+		return (1);
+	if (ft_strcmp(shell->cmd[i].args[0], "exit") == 0)
+		return (1);
+	return (0);
+}
 
 int	builtin(t_shell *shell, int i, int status)
 {

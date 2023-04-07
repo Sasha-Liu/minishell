@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:06:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 13:14:47 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:08:28 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int ft_echo(char **argv)
 		return (0);
 	if (ft_write_protected("\n", 1))
 		return (1);
-	close (1);
     return (0);
 }
 
