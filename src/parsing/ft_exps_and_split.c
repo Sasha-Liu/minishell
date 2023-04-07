@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/02 14:39:53 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:32:10 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@
 int	ft_exps_and_split(t_token **lst, t_token *env_lst)
 {
 	if (ft_exit_exps_lst(*lst))
-    {
+	{
 		return (1);
-    }
+	}
 	if (ft_dollar_exps_lst(*lst, env_lst))
-    {
+	{
 		return (1);
-    }
+	}
 	if (ft_tilde_exps_lst(*lst, env_lst))
-    {
+	{
 		return (1);
-    }
+	}
 	if (ft_syntax_err_2(*lst))
 	{
 		return (1);
 	}
-   	if (ft_split_lst(lst))
+	if (ft_split_lst(lst))
 	{
 		return (1);
 	}
-    ft_rm_quote_lst(*lst);
-    return (0);
+	ft_rm_quote_lst(*lst);
+	return (0);
 }
 
 /*
@@ -49,7 +49,7 @@ int	ft_exps_and_split(t_token **lst, t_token *env_lst)
 int	ft_syntax_err_2(t_token *lst)
 {
 	int	err;
-	
+
 	err = 0;
 	while (lst)
 	{

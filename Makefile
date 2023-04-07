@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+         #
+#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/05 15:48:10 by pchapuis         ###   ########.fr        #
+#    Updated: 2023/04/07 11:17:24 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC_DIR	=	./include/
 
 VPATH	=	./src/parsing ./src/exec ./src/builtin ./src/signal ./src/minishell
 
-LIST_MINISHELL	=	ft_get_env.c token_utils.c \
+LIST_MINISHELL	=	ft_init_shell.c token_utils.c \
 
 LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					dollar_exp_utils.c ft_dollar_exps.c \
