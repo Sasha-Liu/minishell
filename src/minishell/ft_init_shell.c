@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:56:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/01 20:59:46 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:15:27 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	if first malloc to get env_lst fails, abort
 	if the second malloc fails, continue to execute 
 */
-int	ft_get_env(t_shell *shell)
+int	ft_init_shell(t_shell *shell)
 {
 	if (ft_get_env_lst(&(shell->env_lst)))
 	{
@@ -28,6 +28,9 @@ int	ft_get_env(t_shell *shell)
 		write(2, "malloc fails\n", 13);
 		return (0);
 	}
+	shell->cmd = NULL;
+	shell->cmd_size = 0;
+	g_exit_status = 0;
 	return (0);
 }
 

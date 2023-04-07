@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/06 16:08:48 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:32:25 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 		printf("\n");
 		printf("cmd %d: ", i);
 		j = 0;
+		if (*(cmd[i].args[0]) == '\0')
+		{
+			printf("(empty)\n");
+		}
 		while (cmd[i].args && cmd[i].args[j])
 		{
 			printf("_%s_", cmd[i].args[j]);
@@ -62,7 +66,7 @@ int main()
 	char    *buffer;
 	int		pid;
 
-	if (ft_get_env(&shell))
+	if (ft_init_shell(&shell))
 	{
 		return (1);
 	}
@@ -78,6 +82,7 @@ int main()
 			write(2, "parsing fails\n", 14);
 		else
 		{
+			//ft_print_cmd(shell.cmd, shell.cmd_size);
 			add_history(buffer);
 			unplug_signals();
 			pid = fork();

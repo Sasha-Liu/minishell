@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:43:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 10:43:32 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:23:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ void	ft_child_here_doc(char *limiter, int *fd)
 	while (1)
 	{
 		set_heredoc_signals();
-		write(1, "heredoc> ", 9);
-		input = get_next_line(STDIN_FILENO);
+		input = readline("heredoc> ");
 		if (input == NULL)
 		{
 			write(2, "warning: heredoc delimited by eof\n", 34);
 			close(fd[1]);
 			return ;
 		}
-		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0
-			&& ft_strlen(input) == (ft_strlen(limiter) + 1))
+		if (ft_strcmp(input, limiter) == 0)
 		{
 			free(input);
 			close(fd[1]);
