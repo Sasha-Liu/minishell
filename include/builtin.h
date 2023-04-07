@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 13:38:55 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:05:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	ft_exit(char **argv, t_shell *shell);
 void	ft_exit_standart(t_shell *shell);
 void	ft_exit_without_free(t_shell *shell);
 
-int     ft_illegal_name(char *name);
-int	    ft_name_len(char *str);
+int		ft_illegal_name(char *name);
+int		ft_name_len(char *str);
 
 /*	utils	*/
 int		ft_update_env_array(t_shell *shell);
-
 
 #endif
