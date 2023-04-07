@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:58:31 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 14:08:57 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:25:18 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_exit(char **argv, t_shell *shell)
 	}
 	clear_history();
 	ft_delete_lst(&(shell->env_lst));
+	ft_free_env_array(&(shell->env_tab));
 	ft_free_cmd(shell->cmd, shell->cmd_size);
 	exit(g_exit_status);
 }
@@ -59,6 +60,7 @@ void	ft_exit_standart(t_shell *shell)
 	clear_history();
 	ft_delete_lst(&(shell->env_lst));
 	ft_free_cmd(shell->cmd, shell->cmd_size);
+	ft_free_env_array(&(shell->env_tab));
 	exit(g_exit_status);
 }
 
@@ -67,5 +69,7 @@ void	ft_exit_without_free(t_shell *shell)
 	printf("exit\n");
 	clear_history();
 	ft_delete_lst(&(shell->env_lst));
+	ft_free_cmd(shell->cmd, shell->cmd_size);
+	ft_free_env_array(&(shell->env_tab));
 	exit(g_exit_status);
 }
