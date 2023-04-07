@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:43:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 14:38:43 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:39:27 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_child_here_doc(char *limiter, int *fd)
 			return ;
 		}
 		write(fd[1], input, ft_strlen(input));
-		write(fd[1], '\n', 1);
+		write(fd[1], "\n", 1);
 		free(input);
 	}
 }
