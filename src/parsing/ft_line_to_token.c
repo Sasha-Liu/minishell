@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_to_token.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/18 16:48:01 by victor           ###   ########.fr       */
+/*   Updated: 2023/04/10 16:08:38 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	ft_syntax_err(t_token *lst)
 
 static int	ft_err_mess(void)
 {
+	g_exit_status = 2;
 	write(2, "syntax error\n", 13);
 	return (1);
 }
@@ -99,6 +100,7 @@ t_token	*ft_get_token(char **buffer)
 		length = ft_is_word(*buffer);
 		if (length == -1)
 		{
+			g_exit_status = 2;
 			write(2, "quote not enclosed\n", 19);
 			return (NULL);
 		}

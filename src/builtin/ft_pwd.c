@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:53:54 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 10:55:48 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/10 16:03:30 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_pwd(char **argv)
 
 	if (argv[1] && ft_strncmp(argv[1], "-", 1) == 0)
 	{
-		write(2, "pwd: invalid option\n", 20);
+		write(2, "pwd: invalid option\n", 21);
 		return (2);
 	}
 	pwd = ft_malloc_getcwd();
@@ -45,7 +45,7 @@ static char	*ft_malloc_getcwd(void)
 		buf = malloc(sizeof(char) * size);
 		if (buf == NULL)
 		{
-			write(2, "malloc fails\n", 13);
+			write(2, "malloc fails\n", 14);
 			return (NULL);
 		}
 		if (getcwd(buf, size) == NULL)

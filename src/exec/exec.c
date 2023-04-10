@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:45:51 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/10 14:43:43 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:13:53 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ void	exec(t_shell *shell)
 	set_exec_signals();
 	while (i < shell->cmd_size)
 	{
-		g_exit_status = 1;
 		shell->cmd[i].child_pid = fork();
 		if (shell->cmd[i].child_pid == -1)
 		{
 			perror("Fork");
+			g_exit_status = 1;
 			ft_exit_standart(shell);
 		}
 		if (shell->cmd[i].child_pid == 0)
 		{
 			if (launch(shell, i) == 1)
-				ft_exit_standart(shell);
+				g_exit_status = 1;
+			ft_exit_standart(shell);
 		}
 		i ++;
 	}

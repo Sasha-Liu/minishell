@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 13:39:33 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:14:16 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_export(char **argv, t_shell *shell)
 
 	if (argv[1] == NULL)
 	{
-		write(2, "no argument\n", 20);
+		write(2, "no argument\n", 13);
 		return (1);
 	}
 	ret = 0;
@@ -95,18 +95,33 @@ int	ft_name_len(char *str)
 	return (i);
 }
 
+int	check_equal(char *name)
+{
+	if (name[0] == '=')
+	{
+		write(2, "bash: export: `", 16);
+		write(2, name, ft_strlen(name));
+		write(2, "': not a valid identifier\n", 27);
+		return (1);
+	}
+	return (0);
+}
+
 /*
 	name can only cantains alphabet, number and underscore
 	name cannot begin with number
 	if name doesn't end with '=', ignore it
 */
+
 int	ft_illegal_name(char *name)
 {
 	int	i;
 
+	if (check_equal(name) == 1)
+		return (1);
 	if (ft_isdigit(name[0]))
 	{
-		write(2, "not a valid identifier\n", 31);
+		write(2, "not a valid identifier\n", 24);
 		return (1);
 	}
 	i = 0;
@@ -114,7 +129,7 @@ int	ft_illegal_name(char *name)
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
-			write(2, "not a valid identifier\n", 31);
+			write(2, "not a valid identifier\n", 24);
 			return (1);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:45:03 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 10:54:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/10 16:04:09 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_env(char **argv, t_shell *shell)
 
 	if (argv[1])
 	{
-		write(2, "env: invalid options\n", 21);
+		write(2, "env: invalid options\n", 22);
 		return (1);
 	}
 	env = shell->env_lst;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_status_exp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:35 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 14:37:01 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/10 15:34:47 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,19 @@ char	*ft_strjoin_3(char *new_word, char **old)
 	if (exit_str == NULL)
 	{
 		write(2, "malloc fails\n", 13);
+		free(new_word);
 		return (NULL);
 	}
 	res = ft_strjoin(new_word, exit_str);
 	if (res == NULL)
 	{
 		write(2, "malloc fails\n", 13);
+		free(new_word);
+		free(exit_str);
 		return (NULL);
 	}
 	*old = *old + 2;
 	free(new_word);
+	free(exit_str);
 	return (res);
 }

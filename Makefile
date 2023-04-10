@@ -6,7 +6,7 @@
 #    By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/07 16:43:42 by pchapuis         ###   ########.fr        #
+#    Updated: 2023/04/10 16:16:54 by pchapuis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ CFLAGS	=	-Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME)	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB) 
+$(NAME)	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
 
 $(LIB): $(LIB_DIR)

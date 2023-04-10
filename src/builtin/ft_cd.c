@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:18:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 10:53:11 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/10 16:05:31 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_cd(char **argv, t_shell *shell)
 {
 	if (ft_count_args_cd(argv) >= 3)
 	{
-		write(2, "cd: too many arguments\n", 23);
+		write(2, "cd: too many arguments\n", 24);
 		return (1);
 	}
 	if (argv[1] == NULL)
@@ -71,7 +71,7 @@ static int	ft_cd_home(t_shell *shell)
 	}
 	if (home == NULL)
 	{
-		write(2, "cd: HOME is unset\n", 18);
+		write(2, "cd: HOME is unset\n", 19);
 		return (1);
 	}
 	if (chdir(home))
@@ -95,7 +95,7 @@ static int	ft_update_pwd(t_shell *shell, char *dir)
 	word = ft_strjoin("PWD=", dir);
 	if (word == NULL)
 	{
-		write(2, "malloc fails\n", 13);
+		write(2, "malloc fails\n", 14);
 		return (1);
 	}
 	env_lst = shell->env_lst;
