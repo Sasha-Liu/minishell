@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:09:04 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 15:24:59 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:15:34 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	builtin(t_shell *shell, int i, int status)
 		clear_history();
 		ft_delete_lst(&(shell->env_lst));
 		ft_free_cmd(shell->cmd, shell->cmd_size);
+		ft_free_env_array(&(shell->env_tab));
 	}
 	return (tmp);
 }

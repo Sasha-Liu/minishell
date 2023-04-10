@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:51:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 16:48:34 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:28:59 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 void	ft_print_cmd(t_cmd *cmd, int size);
 
-int		exec(t_shell *shell);
+void	exec(t_shell *shell);
 
 int		direct_path(char **cmd);
 int		find_path(char **cmd, char **envp);

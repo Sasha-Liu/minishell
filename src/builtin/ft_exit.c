@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:58:31 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 15:25:18 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/10 14:15:44 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ int	is_valid(char *str)
 
 void	ft_exit(char **argv, t_shell *shell)
 {
+	write(2, "exit\n", 6);
 	if (argv[1] != NULL)
 	{
 		if (is_valid(argv[1]) == 0)
 		{
-			printf("bash: exit: %s: numeric argument required\n", argv[1]);
+			write(2, "bash: exit: ", 13);
+			write(2, argv[1], ft_strlen(argv[1]));
+			write(2, ": numeric argument required\n", 29);
 			g_exit_status = 2;
 		}
 		else if (argv[2] != NULL)
 		{
-			printf("bash: exit: too many arguments\n");
+			write(2, "bash: exit: too many arguments\n", 32);
 			g_exit_status = 1;
 			return ;
 		}
@@ -66,7 +69,7 @@ void	ft_exit_standart(t_shell *shell)
 
 void	ft_exit_without_free(t_shell *shell)
 {
-	printf("exit\n");
+	write(2, "exit\n", 6);
 	clear_history();
 	ft_delete_lst(&(shell->env_lst));
 	ft_free_cmd(shell->cmd, shell->cmd_size);

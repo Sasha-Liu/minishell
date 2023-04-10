@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 16:52:28 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 15:10:46 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	int	j;
 
 	i = 0;
+	printf("*\n");
+	printf("*\n");
 	printf("size: %d\n", size);
 	while (i < size)
 	{
@@ -43,7 +45,9 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 		printf("append_file %s \n", cmd[i].append_file);
 		i++;
 	}
-	printf("\n");
+	printf("*\n");
+	printf("*\n");
+	printf("*\n");
 }
 
 void	reset(t_shell *shell, char *buffer)
@@ -65,8 +69,7 @@ int	launch_execution(t_shell *shell, char *buffer)
 		return (perror("Fork"), 1);
 	if (pid == 0)
 	{
-		if (exec(shell) == 1)
-			g_exit_status = 1;
+		exec(shell);
 		ft_exit_standart(shell);
 	}
 	if (close_all(shell) == 1)
@@ -90,6 +93,7 @@ int	main(void)
 		return (1);
 	while (1)
 	{
+		dprintf(2, "\n\n\n\n\n TEST\n\n\n\n\n\n");
 		set_interactive_signals();
 		rl_on_new_line();
 		buffer = readline("minishell-> ");
@@ -97,12 +101,14 @@ int	main(void)
 			break ;
 		if (!ft_parsing(buffer, &shell))
 		{
+			
+		//	ft_print_cmd(shell.cmd, shell.cmd_size);
 			if (launch_execution(&shell, buffer) == 1)
 			{
 				g_exit_status = 1;
 				ft_exit_standart(&shell);
 			}
-		//	ft_print_cmd(shell.cmd, shell.cmd_size);
+			
 		}
 		reset(&shell, buffer);
 	}

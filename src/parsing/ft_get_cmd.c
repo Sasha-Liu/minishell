@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/10 14:31:15 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:05:30 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,11 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (cmd[i].args == NULL)
-			;
-		else
-		{
-			ft_free_args(cmd + i);
-			free(cmd[i].args);
-			free(cmd[i].read_file);
-			free(cmd[i].write_file);
-			free(cmd[i].append_file);
-		}
+		ft_free_args(cmd + i);
+		free(cmd[i].args);
+		free(cmd[i].read_file);
+		free(cmd[i].write_file);
+		free(cmd[i].append_file);
 		i++;
 	}
 	free(cmd);

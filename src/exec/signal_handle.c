@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:20:58 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 15:25:58 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:40:21 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handle_ctrl_d_exec(int signum, siginfo_t *info, void *context)
 {
 	(void) info;
 	(void) context;
-	printf("Quit (core dumped)\n");
+	write(2, "Quit (core dumped)\n", 20);
 	g_exit_status = 128 + signum;
 	exit(g_exit_status);
 }

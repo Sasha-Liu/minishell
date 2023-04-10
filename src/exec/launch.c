@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/07 16:18:41 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:40:02 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	get_path(t_shell *shell, int i)
 	}
 	else
 	{
+		if (!shell->cmd[i].args[0][0])
+			return (error_cmd(shell->cmd[i].args[0]), 1);
 		if (find_path(&shell->cmd[i].args[0], shell->env_tab) == 1)
 			return (error_cmd(shell->cmd[i].args[0]), 1);
 	}
@@ -100,9 +102,9 @@ int	launch(t_shell *shell, int i)
 	if (get_path(shell, i) == 1)
 	{
 		g_exit_status = 127;
-		exit(127);
+		ft_exit_standart(shell);
 	}
-	if (shell->cmd[0].is_builtin == 1 && shell->cmd_size == 1)
+	if (shell->cmd_size == 1 && shell->cmd[0].is_builtin == 1)
 		ft_exit_standart(shell);
 	if (ft_dup(shell, i) == 1)
 		exit(1);
@@ -116,5 +118,6 @@ int	launch(t_shell *shell, int i)
 	{
 		exit(builtin(shell, i, 1));
 	}
-	exit(g_exit_status);
+	ft_exit_standart(shell);
+	return (0);
 }
