@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:43:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/11 16:31:54 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/11 16:36:47 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,8 @@ static void	ft_free_shell(t_shell *shell)
 	if (shell->env_lst)
 		ft_delete_lst(&(shell->env_lst));
 	if (shell->lst)
-		ft_delete_lst(&(shell->lst));	
+		ft_delete_lst(&(shell->lst));
 	ft_free_cmd(shell->cmd, shell->cmd_size);
 	if (shell->env_tab)
 		ft_free_env_array(&(shell->env_tab));
-	
 }
