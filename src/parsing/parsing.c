@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/10 15:10:40 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:58:52 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,25 @@
 */
 int	ft_parsing(char *buffer, t_shell *shell)
 {
-	t_token	*lst;
-	t_cmd	*cmd;
-
-	lst = ft_line_to_token(buffer);
-	if (!lst || ft_syntax_err(lst))
+	shell->lst = ft_line_to_token(buffer);
+	if (!shell->lst || ft_syntax_err(shell->lst))
 	{
-		return (ft_delete_lst(&lst), 1);
+		return (ft_delete_lst(&(shell->lst)), 1);
 	}
-	if (ft_exps_and_split(&lst, shell->env_lst))
+	if (ft_exps_and_split(&(shell->lst), shell->env_lst))
 	{
-		return (ft_delete_lst(&lst), 1);
+		return (ft_delete_lst(&(shell->lst)), 1);
 	}
-	cmd = ft_get_cmd(lst, &(shell->cmd_size));
-	if (cmd == NULL)
+	shell->cmd = ft_get_cmd(shell->lst, &(shell->cmd_size));
+	if (shell->cmd == NULL)
 	{
-		return (ft_delete_lst(&lst), 1);
+		return (ft_delete_lst(&(shell->lst)), 1);
 	}
-	ft_redirect(&lst, cmd, shell->cmd_size);
-	if (ft_init_command(lst, cmd, shell->cmd_size))
+	ft_redirect(&(shell->lst), shell->cmd, shell->cmd_size, shell);
+	if (ft_init_command(shell->lst, shell->cmd, shell->cmd_size))
 	{
-		ft_free_cmd(cmd, shell->cmd_size);
-		return (ft_delete_lst(&lst), 1);
+		ft_free_cmd(shell->cmd, shell->cmd_size);
+		return (ft_delete_lst(&(shell->lst)), 1);
 	}
-	shell->cmd = cmd;
-	return (ft_delete_lst(&lst), 0);
+	return (ft_delete_lst(&(shell->lst)), 0);
 }

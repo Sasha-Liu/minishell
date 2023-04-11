@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 11:58:21 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/11 15:57:07 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	cmd is an array of length 'size' 
 */
-void	ft_redirect(t_token **lst, t_cmd *cmd, int size)
+void	ft_redirect(t_token **lst, t_cmd *cmd, int size, t_shell *shell)
 {
 	int		i;
 	t_token	*node;
@@ -24,7 +24,7 @@ void	ft_redirect(t_token **lst, t_cmd *cmd, int size)
 	i = 0;
 	while (i < size)
 	{
-		node = ft_redirect_one(node, cmd + i);
+		node = ft_redirect_one(node, cmd + i, shell);
 		if (node)
 			node = node->next;
 		i++;
@@ -32,7 +32,7 @@ void	ft_redirect(t_token **lst, t_cmd *cmd, int size)
 	ft_delete_redirect_lst(lst);
 }
 
-t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
+t_token	*ft_redirect_one(t_token *node, t_cmd *cmd, t_shell *shell)
 {
 	while (1)
 	{
@@ -47,7 +47,7 @@ t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
 		{
 			if (cmd->read_fd != STDIN_FILENO)
 				close(cmd->read_fd);
-			cmd->read_fd = ft_here_doc(node->next->word);
+			cmd->read_fd = ft_here_doc(node->next->word, shell);
 		}
 		else if (((!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>")
 					|| !ft_strcmp(node->word, "<")) && node->is_op))

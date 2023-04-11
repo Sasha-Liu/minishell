@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 16:38:15 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:22:14 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	ft_rm_quote_lst(t_token *lst);
 void	ft_rm_quote_word(char *word);
 
 /***	ft_redirect.c	***/
-void	ft_redirect(t_token **lst, t_cmd *cmd, int size);
-t_token	*ft_redirect_one(t_token *node, t_cmd *cmd);
+void	ft_redirect(t_token **lst, t_cmd *cmd, int size, t_shell *shell);
+t_token	*ft_redirect_one(t_token *node, t_cmd *cmd, t_shell *shell);
 void	ft_update_file(t_token *node, t_cmd *cmd);
 void	ft_delete_redirect_lst(t_token **lst);
 t_token	*ft_delete_redirect_node(t_token *node1);
@@ -97,8 +97,8 @@ int		ft_count_args(t_token *node);
 t_token	*ft_next_cmd(t_token *node);
 
 /*	ft_here_doc.c	*/
-int		ft_here_doc(char *limiter);
-void	ft_child_here_doc(char *limiter, int *fd);
+int		ft_here_doc(char *limiter, t_shell *shell);
+void	ft_child_here_doc(char *limiter, int *fd, t_shell *shell);
 
 /*	ft_exist_status_exp.c	*/
 char	*ft_exit_exps_node(char *word);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/11 14:28:36 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:14:19 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 	int	i;
 
 	if (cmd == NULL)
+	{
 		return ;
+	}
 	i = 0;
 	while (i < size)
 	{
