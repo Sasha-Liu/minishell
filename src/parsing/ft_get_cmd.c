@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/11 16:14:19 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/11 16:33:28 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 		free(cmd[i].read_file);
 		free(cmd[i].write_file);
 		free(cmd[i].append_file);
+		if (cmd[i].write_fd != 1)
+			close(cmd[i].write_fd);
+		if (cmd[i].read_fd != 0)
+			close(cmd[i].read_fd);
 		i++;
 	}
 	free(cmd);
