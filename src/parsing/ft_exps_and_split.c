@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 15:43:30 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:23:25 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_syntax_err_2(t_token *lst)
 			err = ft_exist_unquoted_space(lst->word);
 		if (err == 1)
 		{
+			g_exit_status = 1;
 			write(2, "ambiguous redirection\n", 22);
 			return (1);
 		}

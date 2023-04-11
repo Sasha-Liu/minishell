@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:43:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 16:34:53 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:42:34 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ int	ft_here_doc(char *limiter)
 		return (-1);
 	}
 	if (pid == 0)
-	{
 		ft_child_here_doc(limiter, fd);
-	}
 	close(fd[1]);
 	wait(&wstatus);
 	if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) == 130)
 		return (-1);
+	g_exit_status = 0;
 	return (fd[0]);
 }
 

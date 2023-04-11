@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/10 16:14:28 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:27:18 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	reset(t_shell *shell, char *buffer)
 	free(buffer);
 }
 
-int	launch_execution(t_shell *shell, char *buffer)
+int	launch_execution(t_shell *shell)
 {
 	int	pid;
 
-	add_history(buffer);
 	unplug_signals();
 	pid = fork();
 	if (pid == -1)
@@ -62,9 +61,10 @@ int	main(void)
 		buffer = readline("minishell-> ");
 		if (buffer == NULL)
 			break ;
+		add_history(buffer);
 		if (!ft_parsing(buffer, &shell))
 		{
-			if (launch_execution(&shell, buffer) == 1)
+			if (launch_execution(&shell) == 1)
 			{
 				g_exit_status = 1;
 				ft_exit_standart(&shell);

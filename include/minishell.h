@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 16:37:09 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:28:43 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_cmd{
 	int		write_fd;
 	int		read_fd;
 	int		child_pid;
-	int		exit_status;
 	int		is_builtin;
 }	t_cmd;
 

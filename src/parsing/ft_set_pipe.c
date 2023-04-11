@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/02 13:47:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/11 12:17:56 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	*ft_malloc_pipe(int n)
 void	ft_close_pipe_err(int *p, int i)
 {
 	i--;
-	while (i != 0)
+	while (i >= 0)
 	{
 		close(p[i]);
 		i--;

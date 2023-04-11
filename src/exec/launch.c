@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:57 by pchapuis          #+#    #+#             */
-/*   Updated: 2023/04/10 16:01:18 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:11:34 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,30 @@ int	ft_dup(t_shell *shell, int i)
 	return (0);
 }
 
-int	launch(t_shell *shell, int i)
+void	initialization_before_exec(t_shell *shell, int i)
 {
 	if (shell->cmd[i].read_fd == -1)
-		exit(130);
+	{
+		g_exit_status = 130;
+		ft_exit_standart(shell);
+	}
+	if (ft_dup(shell, i) == 1)
+	{
+		g_exit_status = 1;
+		ft_exit_standart(shell);
+	}
 	if (get_path(shell, i) == 1)
 	{
 		g_exit_status = 127;
 		ft_exit_standart(shell);
 	}
+}
+
+int	launch(t_shell *shell, int i)
+{
+	initialization_before_exec(shell, i);
 	if (shell->cmd_size == 1 && shell->cmd[0].is_builtin == 1)
 		ft_exit_standart(shell);
-	if (ft_dup(shell, i) == 1)
-		exit(1);
 	if (shell->cmd[i].is_builtin == 0 && shell->cmd[i].args != NULL)
 	{
 		if (execve(shell->cmd[i].args[0], shell->cmd[i].args,
@@ -115,9 +126,7 @@ int	launch(t_shell *shell, int i)
 			return (perror("execve"), 1);
 	}
 	else if (shell->cmd[i].args != NULL)
-	{
 		exit(builtin(shell, i, 1));
-	}
 	ft_exit_standart(shell);
 	return (0);
 }

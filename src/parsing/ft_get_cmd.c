@@ -6,7 +6,7 @@
 /*   By: pchapuis <pchapuis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/10 14:05:30 by pchapuis         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:28:36 by pchapuis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_cmd	*ft_malloc_cmd(int n)
 		cmd[i].read_fd = 0;
 		cmd[i].write_fd = 1;
 		cmd[i].child_pid = 1;
-		cmd[i].exit_status = 0;
 		i++;
 	}
 	return (cmd);
